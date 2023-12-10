@@ -40,6 +40,8 @@ public class Main {
         String[] addCartColor={"Blue","Yellow","Red","Green"};
         String[] addCartNumber={"1","2","3","4","5","6"};
         String[] addPositivity={"-","+"};
+
+
         for (int i =0;i<3;i++){
 
             int randomColor=r.nextInt(4);
@@ -48,6 +50,29 @@ public class Main {
             AIHand[AIhandIndex]= String.valueOf(new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartNumber[randomNumber]));
             AIhandIndex++;
         }
+        for (int i =0;i<2;i++){
+            int randomColor=r.nextInt(4);
+            int randomNumber=r.nextInt(6);
+            int randomPositivity=r.nextInt(2);
+            int random=r.nextInt(5);
+            if(random==0){
+               int random2=r.nextInt(2);
+               if (random2==0){
+                   AIHand[AIhandIndex]="%";
+                   AIhandIndex++;
+
+               } else if (random2==1) {
+                   AIHand[AIhandIndex]="2x";
+                   AIhandIndex++;
+               }
+
+            }else {
+                AIHand[AIhandIndex]= String.valueOf(new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartNumber[randomNumber]));
+            AIhandIndex++;
+            }
+        }
+
+
         for (int i =0;i<3;i++){
 
             int randomColor=r.nextInt(4);
@@ -55,17 +80,37 @@ public class Main {
             int randomPositivity=r.nextInt(2);
             P1Hand[P1handIndex]= String.valueOf(new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartNumber[randomNumber]));
             P1handIndex++;
+        }for (int i =0;i<2;i++){
+            int randomColor=r.nextInt(4);
+            int randomNumber=r.nextInt(6);
+            int randomPositivity=r.nextInt(2);
+            int random=r.nextInt(5);
+            if(random==0){
+                int random2=r.nextInt(2);
+                if (random2==0){
+                    P1Hand[P1handIndex]="%";
+                    P1handIndex++;
+
+                } else if (random2==1) {
+                    P1Hand[P1handIndex]="2x";
+                    P1handIndex++;
+                }
+
+            }else {
+                P1Hand[P1handIndex]= String.valueOf(new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartNumber[randomNumber]));
+            P1handIndex++;
+            }
         }
 
 
 
 
 
-        for (int i =0;i<8;i++){
+        for (int i =0;i<AIhandIndex;i++){
             System.out.println("AI Hand: "+AIHand[i]);
         }
         System.out.println(stars);
-        for (int i =0;i<8;i++){
+        for (int i =0;i<P1handIndex;i++){
             System.out.println("P1 Hand: "+P1Hand[i]);
         }
 
