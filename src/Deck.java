@@ -5,22 +5,16 @@ public class Deck {
 
     private String[] Color={"Blue","Yellow","Red","Green"};
     private String[] Number={"1","2","3","4","5","6","7","8","9","10"};
+    private String[] Positivity={"-","+"};
     Card[] gameDeck = new Card[40];
+
     public Deck(){
         int cardIndex=0;
         for (int i =0;i<Color.length;i++){
             for (int j=0;j<Number.length;j++){
-                gameDeck[cardIndex]=new Card(Color[i],Number[j]);
+                gameDeck[cardIndex]=new Card(Color[i],Positivity[1],Number[j]);
                 cardIndex++;
             }
-        }
-
-    }
-
-
-    public void printDeck(){
-        for (int i =0;i<gameDeck.length;i++){
-            System.out.println(gameDeck[i]);
         }
     }
 
@@ -31,9 +25,10 @@ public class Deck {
             int shuffeler= r.nextInt(0, gameDeck.length);
             Card temp= gameDeck[i];
             gameDeck[i] = gameDeck[shuffeler];
-            gameDeck[shuffeler]=gameDeck[i];
+            gameDeck[shuffeler]=temp;
         }
            return gameDeck;
     }
+
 }
 

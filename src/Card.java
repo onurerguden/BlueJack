@@ -1,11 +1,13 @@
 public class Card {
 
+    private String Positivity;
     private String Color;
     private String Number;
 
-    Card(String Color,String Number){
+    Card(String Color,String Positivity, String Number){
 
         this.Color=Color;
+        this.Positivity=Positivity;
         this.Number=Number;
     }
 
@@ -19,6 +21,6 @@ public class Card {
     }
 
     public String toString(){
-        return  Color+" "+Number;
+        return  Color+" "+" "+ Positivity+" "+ Number;
     }
 }
