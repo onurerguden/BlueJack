@@ -1,17 +1,14 @@
 public class Card {
-    private int no;
+
     private String Color;
     private String Number;
 
-    Card(int no,String Color,String Number){
-        this.no=no;
+    Card(String Color,String Number){
+
         this.Color=Color;
         this.Number=Number;
     }
 
-    public int getNo() {
-        return no;
-    }
 
     public String getColor() {
         return Color;
@@ -22,6 +19,6 @@ public class Card {
     }
 
     public String toString(){
-        return Color+" "+Number;
+        return  Color+" "+Number;
     }
 }

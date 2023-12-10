@@ -10,11 +10,13 @@ public class Deck {
         int cardIndex=0;
         for (int i =0;i<Color.length;i++){
             for (int j=0;j<Number.length;j++){
-                gameDeck[cardIndex]=new Card(cardIndex,Color[i],Number[j]);
+                gameDeck[cardIndex]=new Card(Color[i],Number[j]);
                 cardIndex++;
             }
         }
+
     }
+
 
     public void printDeck(){
         for (int i =0;i<gameDeck.length;i++){
@@ -22,14 +24,16 @@ public class Deck {
         }
     }
 
-    public void shuffleDeck(){
 
+
+    public Card[] getShuffledGameDeck() {
         for (int i =0;i<gameDeck.length;i++){
             int shuffeler= r.nextInt(0, gameDeck.length);
             Card temp= gameDeck[i];
             gameDeck[i] = gameDeck[shuffeler];
             gameDeck[shuffeler]=gameDeck[i];
         }
+           return gameDeck;
     }
 }
 
