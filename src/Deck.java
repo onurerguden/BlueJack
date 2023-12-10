@@ -5,33 +5,30 @@ public class Deck {
 
     private String[] Color={"Blue","Yellow","Red","Green"};
     private String[] Number={"1","2","3","4","5","6","7","8","9","10"};
-
+    Card[] gameDeck = new Card[40];
     public Deck(){
-        Card[] gameDeck = new Card[40];
         int cardIndex=0;
-
         for (int i =0;i<Color.length;i++){
             for (int j=0;j<Number.length;j++){
                 gameDeck[cardIndex]=new Card(cardIndex,Color[i],Number[j]);
                 cardIndex++;
             }
         }
-
-
     }
+
     public void printDeck(){
-        Card[] gameDeck = new Card[40];
-        int cardIndex=0;
-
-        for (int i =0;i<Color.length;i++){
-            for (int j=0;j<Number.length;j++){
-                gameDeck[cardIndex]=new Card(cardIndex,Color[i],Number[j]);
-                cardIndex++;
-            }
-        }
-
-        for (int i =0;i<40;i++){
+        for (int i =0;i<gameDeck.length;i++){
             System.out.println(gameDeck[i]);
+        }
+    }
+
+    public void shuffleDeck(){
+
+        for (int i =0;i<gameDeck.length;i++){
+            int shuffeler= r.nextInt(0, gameDeck.length);
+            Card temp= gameDeck[i];
+            gameDeck[i] = gameDeck[shuffeler];
+            gameDeck[shuffeler]=gameDeck[i];
         }
     }
 }
