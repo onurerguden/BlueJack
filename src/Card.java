@@ -17,10 +17,17 @@ public class Card {
     }
 
     public int getValue() {
+        if (Positivity.equals("-")){
+            Value=Value*-1;
+        }
         return Value;
     }
 
     public String toString(){
-        return  Color+" "+" "+ Positivity+" "+ Value;
+        if (Color.equals(" ")){
+            return Positivity;
+        }
+
+        return  Color+" "+Positivity+" "+ Value;
     }
 }
