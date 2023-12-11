@@ -2,13 +2,13 @@ public class Card {
 
     private String Positivity;
     private String Color;
-    private String Number;
+    private int Value;
 
-    Card(String Color,String Positivity, String Number){
+    Card(String Color,String Positivity, int Value){
 
         this.Color=Color;
         this.Positivity=Positivity;
-        this.Number=Number;
+        this.Value=Value;
     }
 
 
@@ -16,11 +16,11 @@ public class Card {
         return Color;
     }
 
-    public String getNumber() {
-        return Number;
+    public int getValue() {
+        return Value;
     }
 
     public String toString(){
-        return  Color+" "+" "+ Positivity+" "+ Number;
+        return  Color+" "+" "+ Positivity+" "+ Value;
     }
 }

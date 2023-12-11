@@ -11,16 +11,15 @@ public class Main {
         Deck deck = new Deck();
 
         Card[] gameDeck = deck.getShuffledGameDeck();
-        String [] P1Hand = new String[10];
-        String [] AIHand = new String[10];
+        Card [] P1Hand = new Card[10];
+        Card [] AIHand = new Card[10];
 
 
 
-      /*  for (int i =0;i<gameDeck.length;i++){
+       for (int i =0;i<gameDeck.length;i++){
             System.out.println(gameDeck[i]);
         }
-
-       */
+       
 
 
         int decksLastCard=39;
@@ -29,17 +28,17 @@ public class Main {
         int P1handIndex=0;
         //Dealing the cards on by one (top,bottom)
         for (int i =0;i<5;i++){
-            AIHand[AIhandIndex]= String.valueOf(gameDeck[decksFirstCard]);
-            P1Hand[P1handIndex]=String.valueOf(gameDeck[decksLastCard]);
+            AIHand[AIhandIndex]= (gameDeck[decksFirstCard]);
+            P1Hand[P1handIndex]= (gameDeck[decksLastCard]);
             AIhandIndex++;
             P1handIndex++;
             decksFirstCard++;
             decksLastCard--;
 
         }
-        String[] addCartColor={"Blue","Yellow","Red","Green"};
-        String[] addCartNumber={"1","2","3","4","5","6"};
-        String[] addPositivity={"-","+"};
+        String[] addCartColor={"Blue","Yellow","Red","Green"," "};
+        int[] addCartValue={1,2,3,4,5,6,7,8,9,10,0};
+        String[] addPositivity={"-","+","%","2x"};
 
 
         for (int i =0;i<3;i++){
@@ -47,7 +46,7 @@ public class Main {
             int randomColor=r.nextInt(4);
             int randomNumber=r.nextInt(6);
             int randomPositivity=r.nextInt(2);
-            AIHand[AIhandIndex]= String.valueOf(new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartNumber[randomNumber]));
+            AIHand[AIhandIndex]= new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartValue[randomNumber]);
             AIhandIndex++;
         }
         for (int i =0;i<2;i++){
@@ -58,16 +57,16 @@ public class Main {
             if(random==0){
                int random2=r.nextInt(2);
                if (random2==0){
-                   AIHand[AIhandIndex]="%";
+                   AIHand[AIhandIndex]=new Card(addCartColor[4],addPositivity[2],addCartValue[10]);
                    AIhandIndex++;
 
                } else if (random2==1) {
-                   AIHand[AIhandIndex]="2x";
+                   AIHand[AIhandIndex]=new Card(addCartColor[4],addPositivity[3],addCartValue[10]);
                    AIhandIndex++;
                }
 
             }else {
-                AIHand[AIhandIndex]= String.valueOf(new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartNumber[randomNumber]));
+                AIHand[AIhandIndex]= (new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartValue[randomNumber]));
             AIhandIndex++;
             }
         }
@@ -78,7 +77,7 @@ public class Main {
             int randomColor=r.nextInt(4);
             int randomNumber=r.nextInt(6);
             int randomPositivity=r.nextInt(2);
-            P1Hand[P1handIndex]= String.valueOf(new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartNumber[randomNumber]));
+            P1Hand[P1handIndex]= (new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartValue[randomNumber]));
             P1handIndex++;
         }for (int i =0;i<2;i++){
             int randomColor=r.nextInt(4);
@@ -88,23 +87,19 @@ public class Main {
             if(random==0){
                 int random2=r.nextInt(2);
                 if (random2==0){
-                    P1Hand[P1handIndex]="%";
+                    P1Hand[P1handIndex]=new Card(addCartColor[4],addPositivity[2],addCartValue[10]);;
                     P1handIndex++;
 
                 } else if (random2==1) {
-                    P1Hand[P1handIndex]="2x";
+                    P1Hand[P1handIndex]=new Card(addCartColor[4],addPositivity[3],addCartValue[10]);
                     P1handIndex++;
                 }
 
             }else {
-                P1Hand[P1handIndex]= String.valueOf(new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartNumber[randomNumber]));
+                P1Hand[P1handIndex]= (new Card(addCartColor[randomColor],addPositivity[randomPositivity],addCartValue[randomNumber]));
             P1handIndex++;
             }
         }
-
-
-
-
 
         for (int i =0;i<AIhandIndex;i++){
             System.out.println("AI Hand: "+AIHand[i]);

@@ -4,15 +4,15 @@ public class Deck {
     Random r = new Random();
 
     private String[] Color={"Blue","Yellow","Red","Green"};
-    private String[] Number={"1","2","3","4","5","6","7","8","9","10"};
+    private int[] Value={1,2,3,4,5,6,7,8,9,10};
     private String[] Positivity={"-","+"};
     Card[] gameDeck = new Card[40];
 
     public Deck(){
         int cardIndex=0;
         for (int i =0;i<Color.length;i++){
-            for (int j=0;j<Number.length;j++){
-                gameDeck[cardIndex]=new Card(Color[i],Positivity[1],Number[j]);
+            for (int j=0;j<Value.length;j++){
+                gameDeck[cardIndex]=new Card(Color[i],Positivity[1],Value[j]);
                 cardIndex++;
             }
         }
