@@ -21,8 +21,6 @@ public class Main {
 
 
 
-
-
         System.out.println("Do you want to see the deck?");
         String a =sc.nextLine();
         if (a.equals("yes")){
@@ -101,7 +99,7 @@ public class Main {
             if(random==0){
                 int random2=r.nextInt(2);
                 if (random2==0){
-                    P1Deck[P1handIndex]=new Card(addCartColor[4],addPositivity[2],addCartValue[10]);;
+                    P1Deck[P1handIndex]=new Card(addCartColor[4],addPositivity[2],addCartValue[10]);
                     P1handIndex++;
 
                 } else if (random2==1) {
@@ -178,80 +176,60 @@ public class Main {
 
 
 
-        while (true){
-
-//aı hand
-            for (int i =0;i<AIClosedHand.length;i++){
-                System.out.println( "AI Hand: "+AIClosedHand[i]);
-            }
-            System.out.println(stars);
+        //aı hand
+        for (int i =0;i<AIClosedHand.length;i++){
+            System.out.println( "AI Hand: "+AIClosedHand[i]);
+        }
+        System.out.println(stars);
 
 //aı board
-            for (int i = AIindex;i>-1;i--){
-                if (i==AIindex){
-                    System.out.print("AI Board: ");
-                }if (AIBoard[i]==null){
-                    System.out.print("Empty");
-                }
-                else {
-                    System.out.print(AIBoard[i]+" , ");
-                }
-            }
-            System.out.println();
-            System.out.println(stars);
-
-
-            //player board
-            for (int i = P1index;i>-1;i--){
-                if (i==P1index){
-                    System.out.print("P1 Board: ");
-                }
-                if (P1Board[i]==null){
-                    System.out.print("Empty");
-                }
-                else {
-                    System.out.print(P1Board[i]+" , ");
-                }
+        for (int i = AIindex;i>-1;i--){
+            if (i==AIindex){
+                System.out.print("AI Board: ");
+            }if (AIBoard[i]==null){
+                System.out.print("Empty");
 
             }
-            System.out.println();
-            System.out.println(stars);
-
-
-            //player hand
-            for (int i =0;i<4;i++){
-                System.out.println((i+1) + ") "+ "P1 Hand: "+P1Hand[i]);
+            else {
+                System.out.print(AIBoard[i]+" , ");
             }
-
-            System.out.println(stars);
-
-
-
+        }
+        System.out.println();
+        System.out.println(stars);
 
 
-
-            System.out.println("P1 asks for a card!");
-            P1Board[P1index]=gameDeck[decksFirstCard];
-            P1Score=P1Score+P1Board[P1index].getValue();
-            gameDeck[decksFirstCard]=null;
-            for (int i = P1index;i>-1;i--){
+        //player board
+        for (int i = P1index;i>-1;i--){
             if (i==P1index){
                 System.out.print("P1 Board: ");
             }
-            System.out.print(P1Board[i]+" , ");
-        }
-            System.out.println();
-            System.out.println("P1 Score: "+P1Score);
+            //importante
 
-            decksFirstCard++;
-            P1index++;
-            System.out.println("Do you want to end turn , stand or play");
-            String turnP1 = sc.nextLine();
-            if (turnP1.equals("end turn")){
-               continue;
-            } else if (turnP1.equals("stand")) {
-                break;
-            } else if (turnP1.equals("play")) {
+            if (P1Board[i]==null){
+                System.out.print("Empty");
+
+            }
+            else {
+                System.out.print(P1Board[i]+" , ");
+            }
+
+        }
+        System.out.println();
+        System.out.println(stars);
+
+
+        //player hand
+        for (int i =0;i<4;i++){
+            System.out.println((i+1) + ") "+ "P1 Hand: "+P1Hand[i]);
+        }
+
+        String turnP1="take card";
+
+        while (true){
+
+
+
+             if (turnP1.equals("play")) {
                 System.out.println("Choose your card to play");
                 System.out.println(stars);
                 for (int i =0;i<4;i++){
@@ -331,31 +309,86 @@ public class Main {
                     P1index++;
                     break;
 
+
+
+
                 }
+
             }
+
+//TAKİNG CARD AI
+            System.out.println(stars);
+            System.out.println("AI asks for a card!");
+            AIBoard[AIindex]=gameDeck[decksFirstCard];
+            AIScore=AIScore+AIBoard[AIindex].getValue();
+            gameDeck[decksFirstCard]=null;
+
+
+
+            //Printing hands
+            System.out.println(stars);
+            for (int i =0;i<AIClosedHand.length;i++){
+                System.out.println( "AI Hand: "+AIClosedHand[i]);
+            }
+            System.out.println(stars);
+            for (int i = AIindex;i>-1;i--){
+                if (i==AIindex){
+                    System.out.print("AI Board: ");
+                }
+                System.out.print(AIBoard[i]+" , ");
+            }
+            System.out.println();
+            System.out.println("AI Score: "+AIScore);
+
+            decksFirstCard++;
+            AIindex++;
+
+            System.out.println(stars);
+            System.out.println("--------------------");
+
+//TAKİNG CARD P1
+
+            if (turnP1.equals("take card")){
+                System.out.println("P1 asks for a card!");
+                System.out.println(stars);
+                P1Board[P1index]=gameDeck[decksFirstCard];
+                P1Score=P1Score+P1Board[P1index].getValue();
+                gameDeck[decksFirstCard]=null;
+
+                for (int i = P1index;i>-1;i--){
+                    if (i==P1index){
+                        System.out.print("P1 Board: ");
+                    }
+                    System.out.print(P1Board[i]+" , ");
+                }
+                System.out.println();
+                System.out.println("P1 Score: "+P1Score);
+
+                decksFirstCard++;
+                P1index++;
+                System.out.println(stars);
+                for (int i =0;i<4;i++){
+                    System.out.println((i+1) + ") "+ "P1 Hand: "+P1Hand[i]);
+
+                }
+
+
+            }
+
+
+            if (turnP1.equals("stand")) {
+
+            }
+
+            System.out.println(stars);
+            System.out.println("Do you want to take card, stand or play");
+            turnP1 = sc.nextLine();
+
+
+
         }
 
         System.out.println("while out");
-/*
-        System.out.println(stars);
-
-
-        System.out.println("AI asks for a card!");
-        AIBoard[AIindex]=gameDeck[decksFirstCard];
-        AIScore=AIScore+AIBoard[AIindex].getValue();
-        gameDeck[decksFirstCard]=null;
-
-
-        System.out.println(stars);
-        System.out.println("AI Board: "+ AIBoard[AIindex]);
-        System.out.println("AI Score: "+AIScore);
-
-        decksFirstCard++;
-        AIindex++;
-
-
- */
-
 
 
     }

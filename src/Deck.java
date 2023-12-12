@@ -18,8 +18,6 @@ public class Deck {
         }
     }
 
-
-
     public Card[] getShuffledGameDeck() {
         for (int i =0;i<gameDeck.length;i++){
             int shuffeler= r.nextInt(0, gameDeck.length);
