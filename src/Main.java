@@ -49,31 +49,48 @@ public class Main {
         System.out.println("!!!END OF MAİN!!!");
 
     }
+
     public static void isRoundFinished(){
 
         if (P1Score>20&&AIScore<21){
+
         System.out.println(stars);
         System.out.println("P1 Bust!!!");
         System.out.println("AI takes the round");
         System.out.println(stars);
         winRoundAI++;
-        turnP1="take card";
+            resetRound();
 
     }
         if (AIScore>20&&P1Score<21){
+            ;
             System.out.println(stars);
             System.out.println("AI Bust!!!");
             System.out.println("P1 takes the round");
             System.out.println(stars);
             winRoundP1++;
-            turnP1="take card";
+            resetRound();
         }
         if (AIScore>20&&P1Score>20){
+
             System.out.println(stars);
             System.out.println("Tie!!");
             System.out.println("No one wins!");
             System.out.println(stars);
-            turnP1="take card";
+            resetRound();
+        }
+        if (AIScore>20&&P1Score>20){
+            if (AIScore==19){
+                if (turnP1.equals("stand")){
+
+                    System.out.println(stars);
+                    System.out.println("Tie!!");
+                    System.out.println("No one wins!");
+                    System.out.println(stars);
+                    resetRound();
+
+                }
+            }
         }
     }
     public static void isGameFinished(){
@@ -285,172 +302,230 @@ public class Main {
             System.out.println((i+1) + ") "+ "P1 Hand: "+P1Hand[i]);
         }
     }
-        public static void game(){
-            while (finish==false){
-
-                if (turnP1.equals("play")) {
-                    System.out.println("Choose your card to play");
-                    System.out.println(stars);
-                    for (int i =0;i<4;i++){
-                        System.out.println((i+1) + ") "+ "P1 Hand: "+P1Hand[i]);
-                    }
-                    System.out.println(stars);
-                    String playCard= sc.nextLine();
-                    if (playCard.equals("1")){
-                        P1Board[P1index]=P1Hand[0];
-                        P1Score=P1Score+P1Board[P1index].getValue();
-                        P1Hand[0]=null;
-
-
-                        for (int i = P1index;i>-1;i--){
-                            if (i==P1index){
-                                System.out.print("P1 Board: ");
-                            }
-                            System.out.print(P1Board[i]+" , ");
-                        }
-                        System.out.println();
-                        System.out.println("P1 Score: "+P1Score);
-                        P1index++;
-
-
-
-                    }
-                    if (playCard.equals("2")){
-                        P1Board[P1index]=P1Hand[1];
-                        P1Score=P1Score+P1Board[P1index].getValue();
-                        P1Hand[1]=null;
-
-
-                        for (int i = P1index;i>-1;i--){
-                            if (i==P1index){
-                                System.out.print("P1 Board: ");
-                            }
-                            System.out.print(P1Board[i]+" , ");
-                        }
-                        System.out.println();
-                        System.out.println("P1 Score: "+P1Score);
-                        P1index++;
-
-
-
-                    }if (playCard.equals("3")){
-                        P1Board[P1index]=P1Hand[2];
-                        P1Score=P1Score+P1Board[P1index].getValue();
-                        P1Hand[2]=null;
-
-
-                        for (int i = P1index;i>-1;i--){
-                            if (i==P1index){
-                                System.out.print("P1 Board: ");
-                            }
-                            System.out.print(P1Board[i]+" , ");
-                        }
-                        System.out.println();
-                        System.out.println("P1 Score: "+P1Score);
-                        P1index++;
-
-
-
-                    }if (playCard.equals("4")){
-                        P1Board[P1index]=P1Hand[3];
-                        P1Score=P1Score+P1Board[P1index].getValue();
-                        P1Hand[3]=null;
-
-
-                        for (int i = P1index;i>-1;i--){
-                            if (i==P1index){
-                                System.out.print("P1 Board: ");
-                            }
-                            System.out.print(P1Board[i]+" , ");
-                        }
-                        System.out.println();
-                        System.out.println("P1 Score: "+P1Score);
-                        P1index++;
-
-
-
-
-
-                    }
-
-                }
-
-//TAKİNG CARD AI
-                System.out.println(stars);
-                System.out.println("AI asks for a card!");
-                AIBoard[AIindex]=gameDeck[decksFirstCard];
-                AIScore=AIScore+AIBoard[AIindex].getValue();
-                gameDeck[decksFirstCard]=null;
-
-
-
-                //Printing hands
-                System.out.println(stars);
-                for (int i =0;i<AIClosedHand.length;i++){
-                    System.out.println( "AI Hand: "+AIClosedHand[i]);
-                }
-                System.out.println(stars);
-                for (int i = AIindex;i>-1;i--){
-                    if (i==AIindex){
-                        System.out.print("AI Board: ");
-                    }
-                    System.out.print(AIBoard[i]+" , ");
-                }
-                System.out.println();
-                System.out.println("AI Score: "+AIScore);
-
-                decksFirstCard++;
-                AIindex++;
-
-                System.out.println(stars);
-                System.out.println("--------------------");
-
-//TAKİNG CARD P1
-
-                if (turnP1.equals("take card")){
-                    System.out.println("P1 asks for a card!");
-                    System.out.println(stars);
-                    P1Board[P1index]=gameDeck[decksFirstCard];
-                    P1Score=P1Score+P1Board[P1index].getValue();
-                    gameDeck[decksFirstCard]=null;
-
-                    for (int i = P1index;i>-1;i--){
-                        if (i==P1index){
-                            System.out.print("P1 Board: ");
-                        }
-                        System.out.print(P1Board[i]+" , ");
-                    }
-                    System.out.println();
-                    System.out.println("P1 Score: "+P1Score);
-
-                    decksFirstCard++;
-                    P1index++;
-                    System.out.println(stars);
-                    for (int i =0;i<4;i++){
-                        System.out.println((i+1) + ") "+ "P1 Hand: "+P1Hand[i]);
-
-                    }
-
-
-                }
+        public static void game() {
+            while (finish == false) {
 
                 if (turnP1.equals("stand")) {
 
-                    for (int i = P1index;i>-1;i--){
-                        if (i==P1index){
+                    for (int i = P1index; i > -1; i--) {
+                        if (i == P1index) {
                             System.out.print("P1 Board: ");
                         }
-                        System.out.print(P1Board[i]+" , ");
+                        System.out.print(P1Board[i] + " , ");
                     }
                     System.out.println();
-                    System.out.println("P1 Score: "+P1Score);
+                    System.out.println("P1 Score: " + P1Score);
 
                     System.out.println(stars);
-                    for (int i =0;i<4;i++) {
+                    for (int i = 0; i < 4; i++) {
                         System.out.println((i + 1) + ") " + "P1 Hand: " + P1Hand[i]);
                     }
 
                 }
+                if (turnAI().equals("stand")) {
+
+                    for (int i = AIindex; i > -1; i--) {
+                        if (i == AIindex) {
+                            System.out.print("P1 Board: ");
+                        }
+                        System.out.print(AIBoard[i] + " , ");
+                    }
+                    System.out.println();
+                    System.out.println("AI Score: " + AIScore);
+
+                }
+
+                if (turnP1.equals("play")) {
+                    System.out.println("Choose your card to play");
+                    System.out.println(stars);
+                    for (int i = 0; i < 4; i++) {
+                        System.out.println((i + 1) + ") " + "P1 Hand: " + P1Hand[i]);
+                    }
+                    System.out.println(stars);
+                    String playCard = sc.nextLine();
+                    if (playCard.equals("1")) {
+                        P1Board[P1index] = P1Hand[0];
+                        P1Score = P1Score + P1Board[P1index].P1getValue();
+                        P1Hand[0] = null;
+
+
+                        for (int i = P1index; i > -1; i--) {
+                            if (i == P1index) {
+                                System.out.print("P1 Board: ");
+                            }
+                            System.out.print(P1Board[i] + " , ");
+                        }
+                        System.out.println();
+                        System.out.println("P1 Score: " + P1Score);
+                        P1index++;
+
+
+                    }
+                    if (playCard.equals("2")) {
+                        P1Board[P1index] = P1Hand[1];
+                        P1Score = P1Score + P1Board[P1index].P1getValue();
+                        P1Hand[1] = null;
+
+
+                        for (int i = P1index; i > -1; i--) {
+                            if (i == P1index) {
+                                System.out.print("P1 Board: ");
+                            }
+                            System.out.print(P1Board[i] + " , ");
+                        }
+                        System.out.println();
+                        System.out.println("P1 Score: " + P1Score);
+                        P1index++;
+
+
+                    }
+                    if (playCard.equals("3")) {
+                        P1Board[P1index] = P1Hand[2];
+                        P1Score = P1Score + P1Board[P1index].P1getValue();
+                        P1Hand[2] = null;
+
+
+                        for (int i = P1index; i > -1; i--) {
+                            if (i == P1index) {
+                                System.out.print("P1 Board: ");
+                            }
+                            System.out.print(P1Board[i] + " , ");
+                        }
+                        System.out.println();
+                        System.out.println("P1 Score: " + P1Score);
+                        P1index++;
+
+
+                    }
+                    if (playCard.equals("4")) {
+                        P1Board[P1index] = P1Hand[3];
+                        P1Score = P1Score + P1Board[P1index].P1getValue();
+                        P1Hand[3] = null;
+
+
+                        for (int i = P1index; i > -1; i--) {
+                            if (i == P1index) {
+                                System.out.print("P1 Board: ");
+                            }
+                            System.out.print(P1Board[i] + " , ");
+                        }
+                        System.out.println();
+                        System.out.println("P1 Score: " + P1Score);
+                        P1index++;
+
+
+                    }
+
+                }
+                if (turnAI().equals("play")) {
+
+                    System.out.println(stars);
+                   Random r =new Random();
+
+                    int playCard = r.nextInt(4)+1;
+                    if (playCard==(1)) {
+                        AIBoard[AIindex] = AIHand[0];
+                        AIScore = AIScore + AIBoard[AIindex].AIgetValue();
+                        AIHand[0] = null;
+
+
+                        for (int i = AIindex; i > -1; i--) {
+                            if (i == AIindex) {
+                                System.out.print("AI Board: ");
+                            }
+                            System.out.print(AIBoard[i] + " , ");
+                        }
+                        System.out.println();
+                        System.out.println("AI Score: " + AIScore);
+                        AIindex++;
+
+
+                    }
+                    if (playCard==(2)) {
+                        AIBoard[AIindex] = AIHand[1];
+                        AIScore = AIScore + AIBoard[AIindex].AIgetValue();
+                        AIHand[1] = null;
+
+
+                        for (int i = AIindex; i > -1; i--) {
+                            if (i == AIindex) {
+                                System.out.print("AI Board: ");
+                            }
+                            System.out.print(AIBoard[i] + " , ");
+                        }
+                        System.out.println();
+                        System.out.println("AI Score: " + AIScore);
+                        AIindex++;
+
+
+                    }
+                    if (playCard==(3)) {
+                        AIBoard[AIindex] = AIHand[2];
+                        AIScore = AIScore + AIBoard[AIindex].AIgetValue();
+                        AIHand[2] = null;
+
+
+                        for (int i = AIindex; i > -1; i--) {
+                            if (i == AIindex) {
+                                System.out.print("AI Board: ");
+                            }
+                            System.out.print(AIBoard[i] + " , ");
+                        }
+                        System.out.println();
+                        System.out.println("AI Score: " + AIScore);
+                        AIindex++;
+
+
+                    }
+                    if (playCard==(4)) {
+                        AIBoard[AIindex] = AIHand[3];
+                        AIScore = AIScore + AIBoard[AIindex].AIgetValue();
+                        AIHand[3] = null;
+
+
+                        for (int i = AIindex; i > -1; i--) {
+                            if (i == AIindex) {
+                                System.out.print("AI Board: ");
+                            }
+                            System.out.print(AIBoard[i] + " , ");
+                        }
+                        System.out.println();
+                        System.out.println("AI Score: " + AIScore);
+                        AIindex++;
+
+
+                    }
+
+                }
+
+//TAKİNG CARD P1
+
+                if (turnP1.equals("take card")) {
+                    System.out.println("P1 asks for a card!");
+                    System.out.println(stars);
+                    P1Board[P1index] = gameDeck[decksFirstCard];
+                    P1Score = P1Score + P1Board[P1index].P1getValue();
+                    gameDeck[decksFirstCard] = null;
+
+
+                    decksFirstCard++;
+                    P1index++;
+
+                }
+//TAKİNG CARD AI
+
+                if (turnAI().equals("take card")) {
+                    System.out.println(stars);
+                    System.out.println("AI asks for a card!");
+                    AIBoard[AIindex] = gameDeck[decksFirstCard];
+                    AIScore = AIScore + AIBoard[AIindex].AIgetValue();
+                    gameDeck[decksFirstCard] = null;
+                    decksFirstCard++;
+                    AIindex++;
+                }
+
+               showBoard();
+
 
                 //Win round conditions
                 isRoundFinished();
@@ -460,8 +535,67 @@ public class Main {
                 System.out.println(stars);
                 System.out.println("Do you want to take card, stand or play");
                 turnP1 = sc.nextLine();
+                turnAI();
 
             }
 
         }
-}
+        public static void showBoard(){
+            System.out.println(stars);
+            for (int i = 0; i < AIClosedHand.length; i++) {
+                System.out.println("AI Hand: " + AIClosedHand[i]);
+            }
+            System.out.println(stars);
+            for (int i = AIindex; i > -1; i--) {
+                if (i == AIindex) {
+                    System.out.print("AI Board: ");
+                }
+
+                System.out.print(AIBoard[i] + " , ");
+
+            }
+            System.out.println();
+            System.out.println("AI Score: " + AIScore);
+            System.out.println(stars);
+            System.out.println("--------------------");
+            for (int i = P1index; i > -1; i--) {
+                if (i == P1index) {
+                    System.out.print("P1 Board: ");
+                }
+
+                System.out.print(P1Board[i] + " , ");
+
+            }
+            System.out.println();
+            System.out.println("P1 Score: " + P1Score);
+            System.out.println(stars);
+            for (int i = 0; i < 4; i++) {
+                System.out.println((i + 1) + ") " + "P1 Hand: " + P1Hand[i]);
+
+            }
+
+
+        }
+        public static String turnAI(){
+        if (AIScore<=16){
+            return "take card";
+        }
+        if (AIScore>16&&AIScore<19){
+            return "play";
+        }
+        if (AIScore>20){
+            return "play";
+        }
+        else return "stand";
+
+        }
+
+        public static void resetRound(){
+
+            showEmptyBoard();
+            turnP1="take card";
+            turnAI();
+
+        }
+
+    }
